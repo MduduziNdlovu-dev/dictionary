@@ -11,16 +11,17 @@ const Search = ({searchForQuery}: Props) => {
     
   return (
     <Box component="form" sx={{
-        display: 'flex'
+        display: 'flex',
+        alignItems: 'center'
     }}>
         <TextField
         onChange={(e) => setQuery(e.target.value)}     
         sx={{
             backgroundColor: "#f4f4f4",
-            border: "1px solid #f4f4f4",
-            borderRadius:"1rem",
+            borderRadius:"2rem",
             margin: "2.875rem 0",
-            width: "100%"
+            width: "100%",
+            border: 'none'
         }}
     />
         <Button type="submit"
@@ -30,7 +31,12 @@ const Search = ({searchForQuery}: Props) => {
             }}
             sx={{
                 color: 'black',
-                border: 'black'
+                border: '2px solid black',
+                padding: "0.5rem 1rem",
+                height: "3rem",
+                borderRadius: "1rem",
+                position: "relative",
+                left: -100
             }}
         >
             Search
