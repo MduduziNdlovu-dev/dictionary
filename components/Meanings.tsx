@@ -35,20 +35,37 @@ const Meanings = ({meaning} : Props) => {
         margin: "2.5rem 0"
       }}>
         <Typography sx={{fontWeight:'1.25rem', color: "#757575"}}> Meaning</Typography>
-        {meaning.definitions.map((definition) => {
-          return (
-            <ListItem key={definition.definition}>
-            {definition.definition}
-            </ListItem>
-          )
-        })}
+        {meaning.definitions.map((definition) => (
+          <ListItem key={definition.definition} sx={{ display: 'block', mb: '1rem' }}>
+          <Typography sx={{ fontSize: '1rem' }}>
+            {"-  - "}{definition.definition}
+          </Typography>
+          
+          {definition.example && (
+            <Typography sx={{ fontStyle: 'italic', color: '#757575', mt: '0.5rem' }}>
+              Example: "{definition.example}"
+            </Typography>
+          )}
+        </ListItem>
+        )
+          
+        )}
         
       </Box>
 
-      {meaning.synonyms.length > 0 && <Box>
-        <Typography sx={{fontWeight:'1.25rem', color: "#757575"}}> Synonyms: <span style={{color:"#A445ED"}}>{meaning.synonyms} </span> </Typography>
+      {meaning.synonyms.length > 0 && (
+  <Box>
+    <Typography sx={{ fontWeight: '1.25rem', color: "#757575" }}>
+      Synonyms:{" "}
+      {meaning.synonyms.map((syn, idx) => (
+        <span key={idx} style={{ color: "#A445ED", marginRight: "0.5rem" }}>
+          {syn}
+        </span>
+      ))}
+    </Typography>
+  </Box>
+)}
 
-      </Box>}
     </Box>
   )
 }

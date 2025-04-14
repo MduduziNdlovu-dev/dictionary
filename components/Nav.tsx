@@ -1,33 +1,40 @@
+'use client'
+
 import React from 'react'
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import { Box, Switch, Typography } from '@mui/material';
+import { Box, Switch, Typography, MenuItem, Select } from '@mui/material'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
+import { useCustomTheme } from '../context/ThemeContext'
 
 const Nav = () => {
+  const { darkMode, toggleDarkMode, font, setFont } = useCustomTheme()
+
   return (
-    <Box sx={{
-        display: 'flex',
-        alignItems: "center",
-        justifyContent: "space-between"
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Typography sx={{ fontWeight: 700 }}>
+        <LibraryBooksIcon sx={{ mr: 1 }} />
+        Dictionary
+      </Typography>
 
-    }}>
-        <Typography sx={{fontWeight: 700}}>
-            Dictionary
-        </Typography>
-
-        <Box sx={{
-            display: 'flex',
-            alignItems: "center",
-            justifyContent:"space-between",
-            width:'20vw'
-        }}>
-            <Typography>
-                Font Switcher
-            </Typography>
-            <Box>
-                <Switch/> Dark Mode 
-            </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Typography>Font:</Typography>
+          <Select
+            size="small"
+            value={font}
+            onChange={(e) => setFont(e.target.value)}
+            sx={{ minWidth: 120 }}
+          >
+            <MenuItem value="Geist">Geist</MenuItem>
+            <MenuItem value="Serif">Serif</MenuItem>
+            <MenuItem value="Mono">Monospace</MenuItem>
+          </Select>
         </Box>
-        
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Typography>Dark Mode</Typography>
+          <Switch checked={darkMode} onChange={toggleDarkMode} />
+        </Box>
+      </Box>
     </Box>
   )
 }
