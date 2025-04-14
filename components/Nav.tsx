@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { Box, Switch, Typography, MenuItem, Select } from '@mui/material'
+import { motion } from 'framer-motion'
+import { Box, Typography, Switch, MenuItem, Select } from '@mui/material'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
 import { useCustomTheme } from '../context/ThemeContext'
 
@@ -9,33 +9,30 @@ const Nav = () => {
   const { darkMode, toggleDarkMode, font, setFont } = useCustomTheme()
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Typography sx={{ fontWeight: 700 }}>
-        <LibraryBooksIcon sx={{ mr: 1 }} />
-        Dictionary
-      </Typography>
-
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography>Font:</Typography>
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop:"1rem" }}>
+        <Typography sx={{ fontWeight: 700 }}>
+          <LibraryBooksIcon sx={{ mr: 1 }} />
+          Dictionary
+        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <Select
-            size="small"
             value={font}
             onChange={(e) => setFont(e.target.value)}
-            sx={{ minWidth: 120 }}
+            size="small"
           >
             <MenuItem value="Geist">Geist</MenuItem>
             <MenuItem value="Serif">Serif</MenuItem>
             <MenuItem value="Mono">Monospace</MenuItem>
           </Select>
-        </Box>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography>Dark Mode</Typography>
           <Switch checked={darkMode} onChange={toggleDarkMode} />
         </Box>
       </Box>
-    </Box>
+    </motion.div>
   )
 }
 

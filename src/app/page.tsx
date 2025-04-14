@@ -4,6 +4,7 @@ import Nav from "../../components/Nav";
 import { useState } from "react";
 import Search from "../../components/Search";
 import Results from "../../components/Results";
+import PageWrapper from "../../components/PageWrapper";
 
 export default function Home() {
   const [result, setResult] = useState<any>(null);
@@ -18,9 +19,11 @@ export default function Home() {
     console.log(result)
   return (
     <Container maxWidth="md">
+      <PageWrapper>
       <Nav/>
       <Search searchForQuery={searchForQuery}/>
       {result === null ? null : <Results results={result}/>}
+      </PageWrapper>
     </Container>
   );
 }
